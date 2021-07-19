@@ -1,2 +1,3 @@
+<!-- Originally started while listening to the Cramps! -->
 # monkeOS
-The OS for Monkes
+The 64-bit OS for Monkes!
