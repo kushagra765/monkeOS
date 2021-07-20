@@ -17,8 +17,5 @@ chmod +x iso.sh
 chmod +x qemu.sh
 chmod +x target-triplet-to-arch.sh
 
-./config.sh
-./build.sh
-./iso.sh
 ./qemu.sh
 ```
