@@ -1,0 +1,23 @@
+name: Run MonkeOS
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: chmod everything
+      run: chmod +x *.sh
+    - name: Do everything
+      run: ./src/scripts/qemu.sh
+    - name: make everything
+      run: make
+    - name: Deny everything
+      run: echo Deny everything
