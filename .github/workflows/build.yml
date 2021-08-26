@@ -14,9 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: chmod everything
-      run: chmod +x *.sh
-    - name: Do everything
-      run: ./src/scripts/qemu.sh
+      run: chmod +x ./*.sh
+    - name: cd everything
+      run: cd src
     - name: make everything
       run: make
     - name: Deny everything
