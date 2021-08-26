@@ -15,7 +15,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: chmod everything
       run: chmod +x ./*.sh
-    - name: cd everything
+    - name: Build everything pt one
+      run: ./scripts/toolchain/toolchain.sh
+    - name: cd everything pt one
+      run: cd ../../
+    - name: cd everything pt two
       run: cd src
     - name: make everything
       run: make
