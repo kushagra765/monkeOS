@@ -6,4 +6,6 @@ The 32-bit OS for Monkes!
 1. binutils
 2. qemu-i386 or qemu-x86_64 (I think that works too)
 ### Running
-I killed the scripts.
+```
+# wip
+```
