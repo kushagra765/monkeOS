@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: chmod everything
-      run: chmod +x ./*.sh
+      run: chmod +x *.sh
     - name: Build everything pt one
       run: ./scripts/toolchain/toolchain.sh
     - name: cd everything pt one
