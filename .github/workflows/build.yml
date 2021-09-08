@@ -1,4 +1,4 @@
-name: Run MonkeOS
+name: Build MonkeOS
 
 on:
   push:
@@ -8,20 +8,40 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: chmod everything
-      run: chmod +x *.sh
-    - name: Build everything pt one
-      run: ./scripts/toolchain/toolchain.sh
-    - name: cd everything pt one
-      run: cd ../../
-    - name: cd everything pt two
-      run: cd src
-    - name: make everything
-      run: make
-    - name: Deny everything
-      run: echo Deny everything
+     - name: Checkout
+       uses: actions/checkout@v2
+       
+     - name: Cache Toolchain
+       uses: actions/cache@v2
+       env:
+         cache-name: cache-toolchain
+       with:
+         path: |
+           **/toolchain
+         key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/toolchain.sh') }}
+         restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/toolchain.sh') }}
+         
+     - name: Build i686-elf-gcc Toolchain
+       run: |
+         cd ./toolchain/
+         chmod +x ./toolchain.sh
+         ./_toolchain.sh
+         
+     - name: Install Dependencies
+       run: |
+         sudo apt-get update
+         sudo apt-get install nasm mtools xorriso
+         
+     - name: Build monkeOS
+       run: |
+          make -j$(nproc)
+          
+     - name: Upload Build Artifact
+       uses: actions/upload-artifact@v2.2.3
+       with:
+         name: monkeOS-Build.iso
+         path: monkeOS.iso
+         if-no-files-found: warn
