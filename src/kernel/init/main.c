@@ -4,5 +4,6 @@
 void kernel_main(void) {
   terminal_initialize();
   printf("Welcome to monkeOS!\n");
-  printf("This is all there is :(");
+  printf("This is all there is :(\n");
+  printf("At least it works.");
 }
