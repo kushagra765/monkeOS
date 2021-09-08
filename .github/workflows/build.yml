@@ -28,7 +28,7 @@ jobs:
        run: |
          cd ./toolchain/
          chmod +x ./toolchain.sh
-         ./_toolchain.sh
+         ./toolchain.sh
          
      - name: Install Dependencies
        run: |
